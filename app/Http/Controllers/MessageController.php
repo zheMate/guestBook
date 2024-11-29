@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use Jenssegers\Agent\Agent;
+
+
 
 class MessageController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, Agent $agent)
     {
         $messageData = [
             'username' => $request->username,
             'email' => $request->email,
             'textOfMessage' => $request->textOfMessage,
-            'userIP'=> $request->userIP,
-            'userBrowser'=> $request->userIP,
+            'userIP'=> $request->ip(),
+            'userBrowser'=> $agent->browser(),
         ];
 
         Message::create($messageData);

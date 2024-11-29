@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('message');
 });
+Route::get('/getall', [MessageController::class, 'getall'])->name('getall');
+Route::post('/store', [MessageController::class, 'store'])->name('store');
+Route::delete('/message/delete', [MessageController::class, 'delete'])->name('delete');
